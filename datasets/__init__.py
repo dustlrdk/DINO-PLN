@@ -4,6 +4,7 @@ import torchvision
 
 from .coco import build as build_coco
 from .publaynet import build as build_publaynet
+from .doclaynet import build as build_doclaynet
 
 
 def get_coco_api_from_dataset(dataset):
@@ -24,6 +25,8 @@ def build_dataset(image_set, args):
         from .coco_panoptic import build as build_coco_panoptic
         return build_coco_panoptic(image_set, args)
     if args.dataset_file =="publaynet":
+        return build_publaynet(image_set, args)
+    if args.dataset_file =="doclaynet":
         return build_publaynet(image_set, args)
     if args.dataset_file == 'o365':
         from .o365 import build_o365_combine
